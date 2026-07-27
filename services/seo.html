@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO & Growth | Ello - Rank Higher, Drive More Traffic</title>
+    <meta name="description" content="Technical SEO, content optimization, and analytics setup so your site ranks higher and drives more organic traffic.">
+    <meta name="theme-color" content="#00ff88">
+    <link rel="icon" type="image/x-icon" href="../assets/images/logo/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root{
+            --bg:#0b0f0d;
+            --surface:#111815;
+            --surface-2:#161f1b;
+            --border:rgba(234,242,237,0.09);
+            --text:#eaf2ed;
+            --muted:#8fa79a;
+            --jade:#1f6f52;
+            --jade-2:#2c8a68;
+            --bright:#4ade80;
+        }
+        html[data-theme="light"]{
+            --bg:#f6f4ee;
+            --surface:#ffffff;
+            --surface-2:#eef0ea;
+            --border:rgba(20,30,25,0.09);
+            --text:#121a16;
+            --muted:#5a6a61;
+            --jade:#1f6f52;
+            --jade-2:#227a5c;
+            --bright:#0f9d58;
+        }
+        *{box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{
+            margin:0;
+            background:var(--bg);
+            color:var(--text);
+            font-family:'Inter',sans-serif;
+            -webkit-font-smoothing:antialiased;
+            transition:background .4s ease, color .4s ease;
+            overflow-x:hidden;
+        }
+        h1,h2,h3{
+            font-family:'Fraunces',serif;
+            font-weight:600;
+            letter-spacing:-0.01em;
+            margin:0;
+        }
+        a{color:inherit;text-decoration:none;}
+        .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+        .eyebrow{
+            display:inline-flex;align-items:center;gap:8px;
+            font-family:'JetBrains Mono',monospace;
+            font-size:12.5px;letter-spacing:0.06em;text-transform:uppercase;
+            color:var(--bright);
+            margin-bottom:18px;
+        }
+        section{padding:108px 0;}
+        @media(max-width:720px){section{padding:70px 0;}}
+        
+        /* NAV */
+        header{
+            position:fixed;top:16px;left:0;right:0;z-index:100;
+            background:transparent;
+            display:flex;justify-content:center;
+            padding:0 20px;
+        }
+        .nav-shell{width:100%;max-width:1180px;margin:0 auto;}
+        .nav{
+            display:flex;align-items:center;justify-content:space-between;height:66px;
+            width:100%;max-width:1180px;margin:0 auto;padding:0 14px 0 22px;
+            background:rgba(8,8,12,.65);
+            backdrop-filter:blur(18px);
+            -webkit-backdrop-filter:blur(18px);
+            border:1px solid rgba(255,255,255,.08);
+            border-radius:999px;
+            box-shadow:0 10px 34px rgba(0,0,0,0.28);
+        }
+        .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:20px;}
+        .logo-mark{
+            width:28px;height:28px;border-radius:8px;
+            background:linear-gradient(140deg,var(--jade),var(--bright));
+            display:flex;align-items:center;justify-content:center;
+            font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13px;color:#06120c;
+        }
+        nav .links{display:flex;gap:6px;align-items:center;}
+        nav .links a{
+            padding:9px 16px;border-radius:999px;background:transparent;
+            transition:background .2s ease, color .2s ease;
+            font-size:14px;color:var(--muted);font-weight:500;
+        }
+        nav .links a:hover{color:var(--text);background:var(--surface-2);}
+        .nav-actions{display:flex;align-items:center;gap:14px;}
+        .theme-btn{
+            width:38px;height:38px;border-radius:50%;border:1px solid var(--border);
+            background:var(--surface);color:var(--text);cursor:pointer;
+            display:flex;align-items:center;justify-content:center;font-size:15px;
+        }
+        .btn{
+            display:inline-flex;align-items:center;gap:8px;
+            padding:12px 22px;border-radius:999px;
+            font-size:14.5px;font-weight:600;cursor:pointer;border:none;
+            transition:transform .2s ease, box-shadow .2s ease;
+            font-family:'Inter',sans-serif;
+        }
+        .btn:hover{transform:translateY(-2px);}
+        .btn-primary{background:linear-gradient(135deg,var(--jade-2),var(--bright));color:#06140d;}
+        .btn-primary:hover{box-shadow:0 10px 30px rgba(74,222,128,0.25);}
+        .btn-secondary{border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);color:white;}
+        .btn-lg{padding:16px 34px;font-size:15.5px;}
+        .menu-toggle{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;}
+        @media(max-width:900px){nav .links{display:none;}.menu-toggle{display:block;}}
+        .mobile-menu{
+            display:none;flex-direction:column;gap:2px;padding:10px 22px 16px;margin-top:10px;
+            background:var(--surface);border:1px solid var(--border);border-radius:20px;
+        }
+        .mobile-menu.open{display:flex;}
+        .mobile-menu a{padding:12px 4px;font-size:15px;color:var(--muted);border-bottom:1px solid var(--border);}
+        
+        /* PAGE HERO */
+        .page-hero{padding:180px 0 80px;position:relative;}
+        .page-hero-content{max-width:800px;}
+        .page-hero h1{font-size:clamp(32px,5vw,56px);line-height:1.1;margin-bottom:20px;}
+        .page-hero .lead{color:var(--muted);font-size:18px;line-height:1.6;max-width:600px;}
+        .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px;}
+        
+        /* DETAIL GRID */
+        .detail-section{padding-top:0;}
+        .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+        @media(max-width:860px){.detail-grid{grid-template-columns:1fr;}}
+        .detail-content h2{font-size:clamp(28px,3.4vw,40px);margin-bottom:20px;}
+        .detail-content p{color:var(--muted);font-size:15.5px;line-height:1.7;margin-bottom:16px;}
+        .story-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+        .stat-card{
+            background:var(--surface);border:1px solid var(--border);
+            border-radius:16px;padding:30px;text-align:center;
+        }
+        .stat-num{font-family:'Fraunces',serif;font-size:42px;font-weight:700;color:var(--bright);margin-bottom:8px;}
+        .stat-label{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+        
+        /* FEATURES */
+        .features-section{padding:80px 0;background:var(--surface);}
+        .section-head{max-width:620px;margin-bottom:52px;}
+        .section-head h2{font-size:clamp(28px,3.4vw,40px);}
+        .section-head p{color:var(--muted);font-size:16px;margin-top:14px;line-height:1.6;}
+        .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+        @media(max-width:900px){.features-grid{grid-template-columns:1fr 1fr;}}
+        @media(max-width:600px){.features-grid{grid-template-columns:1fr;}}
+        .feature-card{
+            background:var(--bg);border:1px solid var(--border);
+            border-radius:16px;padding:32px;
+        }
+        .feature-icon{font-size:32px;margin-bottom:18px;}
+        .feature-card h3{font-size:18px;margin-bottom:10px;}
+        .feature-card p{color:var(--muted);font-size:14.5px;line-height:1.6;margin:0;}
+        
+        /* PROCESS */
+        .process-list{position:relative;display:flex;flex-direction:column;gap:0;padding-left:74px;}
+        .process-list::before{
+            content:"";position:absolute;left:27px;top:8px;bottom:8px;width:1px;
+            background:linear-gradient(180deg, var(--jade-2), var(--border) 90%);
+        }
+        .process-item{position:relative;padding:28px 0;}
+        .process-item:not(:last-child){border-bottom:1px solid var(--border);}
+        .process-num{
+            position:absolute;left:-74px;top:26px;width:56px;height:56px;border-radius:50%;
+            display:flex;align-items:center;justify-content:center;
+            font-family:'JetBrains Mono',monospace;color:var(--bright);font-size:15px;font-weight:600;
+            background:var(--surface);border:1px solid var(--border);
+        }
+        .process-item h3{font-size:19px;margin-bottom:6px;}
+        .process-item p{color:var(--muted);font-size:14.5px;max-width:520px;margin:0;}
+        @media(max-width:560px){
+            .process-list{padding-left:56px;}
+            .process-list::before{left:19px;}
+            .process-num{left:-56px;width:44px;height:44px;font-size:13px;}
+        }
+        
+        /* PRICING */
+        .pricing-section{padding:80px 0;}
+        .pricing-highlight{
+            text-align:center;background:var(--surface);
+            border:1px solid var(--border);border-radius:20px;
+            padding:50px 40px;max-width:700px;margin:0 auto;
+        }
+        .price-tag{
+            font-family:'Fraunces',serif;font-size:42px;
+            font-weight:700;color:var(--bright);margin-bottom:8px;
+        }
+        .price-timeline{
+            font-family:'JetBrains Mono',monospace;font-size:13px;
+            color:var(--muted);text-transform:uppercase;letter-spacing:.08em;
+        }
+        
+        /* FAQ */
+        .faq-section{padding:80px 0;}
+        .faq-item{border-top:1px solid var(--border);}
+        .faq-item:last-child{border-bottom:1px solid var(--border);}
+        .faq-q{
+            width:100%;text-align:left;background:none;border:none;color:var(--text);
+            padding:22px 0;font-size:16px;font-weight:600;cursor:pointer;
+            display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;
+        }
+        .faq-q .plus{color:var(--bright);font-size:20px;transition:transform .25s ease;}
+        .faq-item.open .plus{transform:rotate(45deg);}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+        .faq-a p{color:var(--muted);font-size:14.5px;line-height:1.6;padding-bottom:22px;margin:0;}
+        
+        /* CTA */
+        .cta-band{
+            background:linear-gradient(135deg, var(--jade), var(--jade-2));
+            border-radius:22px;padding:60px 50px;text-align:center;color:#06140d;
+        }
+        .cta-band h2{color:#06140d;font-size:clamp(26px,3.4vw,38px);}
+        .cta-band p{color:rgba(6,20,13,0.75);margin:14px 0 26px;font-size:16px;}
+        .cta-band .btn-primary{background:#06140d;color:#eaf2ed;}
+        
+        /* FOOTER */
+        footer{border-top:1px solid var(--border);padding:64px 0 28px;}
+        .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:36px;margin-bottom:50px;}
+        @media(max-width:800px){.foot-grid{grid-template-columns:1fr 1fr;}}
+        .foot-grid h4{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:16px;font-weight:600;}
+        .foot-grid ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+        .foot-grid ul a{font-size:14px;color:var(--text);opacity:.85;}
+        .foot-grid ul a:hover{opacity:1;color:var(--bright);}
+        .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--border);flex-wrap:wrap;gap:10px;}
+        .foot-bottom span{font-size:13px;color:var(--muted);}
+        .foot-bottom .legal a{margin-left:18px;font-size:13px;color:var(--muted);}
+        
+        /* WHATSAPP */
+        .wa-float{
+            position:fixed;bottom:26px;right:26px;z-index:200;
+            width:58px;height:58px;border-radius:50%;background:#25D366;color:#06140d;
+            display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;
+            box-shadow:0 10px 30px rgba(37,211,102,0.35);border:none;
+        }
+        .wa-float:hover{transform:scale(1.06);}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header id="top">
+        <div class="nav-shell">
+            <nav class="nav">
+                <a href="../index.html" class="logo">
+                    <div class="logo-mark">e.</div>
+                    <span>Ello</span>
+                </a>
+               
+                
+                <div class="nav-actions">
+                    <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">🌙</button>
+                    <a href="../contact.html" class="btn btn-primary">Start Project</a>
+                    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+                </div>
+            </nav>
+            
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="../index.html">Home</a>
+                <a href="../about.html">About</a>
+                <a href="../services.html">Services</a>
+                <a href="../projects.html">Projects</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="page-hero">
+            <div class="wrap">
+                <div class="page-hero-content">
+                    <div class="eyebrow">Service 05</div>
+                    <h1>SEO & Growth</h1>
+                    <p class="lead">Technical SEO, content optimization, and analytics setup so your site ranks higher and drives more organic traffic.</p>
+                    <div class="hero-ctas">
+                        <a href="../contact.html" class="btn btn-primary btn-lg">Get a Quote</a>
+                        <a href="../projects.html" class="btn btn-secondary btn-lg">See Our Work</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detail Overview -->
+        <section class="detail-section">
+            <div class="wrap">
+                <div class="detail-grid">
+                    <div class="detail-content">
+                        <div class="eyebrow">What we do</div>
+                        <h2>Get found on Google — without paid ads</h2>
+                        <p>A beautiful website means nothing if nobody can find it. SEO (Search Engine Optimization) is how you get free, consistent traffic from Google. We handle the technical setup, content optimization, and ongoing strategy so your site ranks for the keywords that matter to your business.</p>
+                        <p>Whether you're launching a new site or trying to improve an existing one, our SEO services are designed to deliver measurable results — more traffic, more leads, more sales.</p>
+                    </div>
+                    <div class="detail-visual">
+                        <div class="story-stats">
+                            <div class="stat-card">
+                                <div class="stat-num">Ongoing</div>
+                                <div class="stat-label">Monthly service</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-num">+200%</div>
+                                <div class="stat-label">Avg. traffic lift</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-num">#1</div>
+                                <div class="stat-label">Ranking goal</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-num">ROI</div>
+                                <div class="stat-label">Tracked monthly</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section class="features-section">
+            <div class="wrap">
+                <div class="section-head">
+                    <div class="eyebrow">What's included</div>
+                    <h2>Complete SEO service</h2>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Technical SEO Audit</h3>
+                        <p>We audit your site's technical health — speed, crawlability, indexation, and structure.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <h3>On-Page Optimization</h3>
+                        <p>Meta tags, headings, content structure, and internal linking optimized for rankings.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Speed Optimization</h3>
+                        <p>Core Web Vitals optimization so your site loads fast and ranks higher.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Analytics Setup</h3>
+                        <p>Google Analytics 4, Search Console, and conversion tracking set up properly.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>Monthly Reporting</h3>
+                        <p>Clear monthly reports showing rankings, traffic, and ROI — no jargon.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Keyword Strategy</h3>
+                        <p>We research the keywords your customers are searching for and build a strategy around them.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process -->
+        <section class="process-section">
+            <div class="wrap">
+                <div class="section-head">
+                    <div class="eyebrow">Our process</div>
+                    <h2>How we grow your traffic</h2>
+                </div>
+                <div class="process-list">
+                    <div class="process-item">
+                        <div class="process-num">01</div>
+                        <div>
+                            <h3>SEO Audit</h3>
+                            <p>We audit your current site and identify quick wins and long-term opportunities.</p>
+                        </div>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-num">02</div>
+                        <div>
+                            <h3>Strategy & Keywords</h3>
+                            <p>We build a keyword strategy based on search volume, competition, and business goals.</p>
+                        </div>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-num">03</div>
+                        <div>
+                            <h3>Implementation</h3>
+                            <p>We implement technical fixes, optimize content, and build the foundation for growth.</p>
+                        </div>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-num">04</div>
+                        <div>
+                            <h3>Monitor & Optimize</h3>
+                            <p>We track rankings monthly and continuously optimize based on data.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="pricing-section">
+            <div class="wrap">
+                <div class="section-head">
+                    <div class="eyebrow">Pricing</div>
+                    <h2>Transparent pricing</h2>
+                </div>
+                <div class="pricing-highlight">
+                    <div class="price-tag">From PKR 10,000/mo</div>
+                    <div class="price-timeline">Ongoing monthly service</div>
+                    <p style="color:var(--muted);font-size:15px;line-height:1.6;max-width:600px;margin:20px auto 0;">SEO is a long-term investment. We offer monthly retainers with clear deliverables and monthly reporting.</p>
+                    <a href="../contact.html" class="btn btn-primary btn-lg" style="margin-top:28px;">Get Your Quote</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section">
+            <div class="wrap">
+                <div class="section-head">
+                    <div class="eyebrow">FAQs</div>
+                    <h2>Common questions</h2>
+                </div>
+                <div class="faq-list" id="faqList">
+                    <div class="faq-item">
+                        <button class="faq-q">How long does SEO take to show results?<span class="plus">+</span></button>
+                        <div class="faq-a">
+                            <p>SEO is a long-term strategy. Most clients see measurable results in 3-6 months.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q">Do you guarantee first-page rankings?<span class="plus">+</span></button>
+                        <div class="faq-a">
+                            <p>No ethical SEO agency can guarantee specific rankings. We guarantee best practices and measurable growth.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q">What's included in the monthly retainer?<span class="plus">+</span></button>
+                        <div class="faq-a">
+                            <p>Technical fixes, content optimization, link building, and monthly reporting.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q">Can you do SEO for an existing site?<span class="plus">+</span></button>
+                        <div class="faq-a">
+                            <p>Yes. We audit your current site and build a strategy to improve its rankings.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q">Do you write content?<span class="plus">+</span></button>
+                        <div class="faq-a">
+                            <p>Yes. We can write SEO-optimized blog posts and landing page copy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="wrap">
+                <div class="cta-band">
+                    <h2>Ready to rank higher?</h2>
+                    <p>Tell us about your site. We'll audit it and show you the growth opportunity.</p>
+                    <a href="../contact.html" class="btn btn-primary btn-lg">Get a Free Audit</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="wrap">
+            <div class="foot-grid">
+                <div>
+                    <a href="../index.html" class="logo">
+                        <div class="logo-mark">e.</div>
+                        <span>Ello</span>
+                    </a>
+                    <p style="color:var(--muted);font-size:14px;line-height:1.6;margin-top:14px;">We build for businesses that are serious about growth.</p>
+                </div>
+                <div>
+                    <h4>Quick links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../services.html">Services</a></li>
+                        <li><a href="../projects.html">Projects</a></li>
+                        <li><a href="../pricing.html">Pricing</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="web-design.html">Website Development</a></li>
+                        <li><a href="ecommerce.html">Ecommerce & Shopify</a></li>
+                        <li><a href="custom-saas.html">Custom SaaS</a></li>
+                        <li><a href="seo.html">SEO & Growth</a></li>
+                    </ul>
+                </div>
+                <div>
+                    
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span>© 2026 Ello. All rights reserved.</span>
+                <div class="legal">
+                    <a href="../privacy.html">Privacy</a>
+                    <a href="../terms.html">Terms</a>
+                    <a href="../refund.html">Refund</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/19177225695" class="wa-float" id="waFloat" target="_blank" aria-label="Chat on WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <script>
+        // Theme Toggle
+        const root = document.documentElement;
+        const themeBtn = document.getElementById('themeToggle');
+        function setTheme(t){
+            root.setAttribute('data-theme', t);
+            themeBtn.textContent = t === 'light' ? '☀️' : '🌙';
+        }
+        setTheme('dark');
+        themeBtn.addEventListener('click', () => {
+            const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            setTheme(next);
+        });
+
+        // Mobile Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { 
+            mobileMenu.classList.remove('open'); 
+            menuToggle.classList.remove('open'); 
+        }));
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-q').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const ans = item.querySelector('.faq-a');
+                const isOpen = item.classList.contains('open');
+                
+                // Close all
+                document.querySelectorAll('.faq-item.open').forEach(o => { 
+                    o.classList.remove('open'); 
+                    o.querySelector('.faq-a').style.maxHeight = null; 
+                });
+                
+                // Open clicked
+                if(!isOpen){
+                    item.classList.add('open');
+                    ans.style.maxHeight = ans.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // Header Scroll
+        const headerEl = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            headerEl.classList.toggle('scrolled', window.scrollY > 20);
+        });
+    </script>
+</body>
+</html>

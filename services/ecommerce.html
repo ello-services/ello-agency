@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce & Shopify | Ello - Stores That Convert</title>
+    <meta name="description" content="High-converting Shopify and custom e-commerce stores. From setup to checkout optimization.">
+    <meta name="theme-color" content="#00ff88">
+    <link rel="icon" type="image/x-icon" href="../assets/images/logo/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root{
+            --bg:#050706;
+            --surface:#0d1210;
+            --surface-2:#151d19;
+            --border:rgba(234,242,237,0.08);
+            --text:#eaf2ed;
+            --muted:#6b8577;
+            --jade:#1f6f52;
+            --jade-2:#2c8a68;
+            --bright:#4ade80;
+            --glow:rgba(74,222,128,0.15);
+            --accent:#ff007f; /* Subtle pink for e-commerce pop */
+        }
+        html[data-theme="light"]{
+            --bg:#f8f9f8;
+            --surface:#ffffff;
+            --surface-2:#f0f4f2;
+            --border:rgba(20,30,25,0.08);
+            --text:#0a0f0d;
+            --muted:#5a6a61;
+            --bright:#0f9d58;
+            --glow:rgba(15,157,88,0.1);
+        }
+        *{box-sizing:border-box;margin:0;padding:0;}
+        html{scroll-behavior:smooth;}
+        body{
+            background:var(--bg);
+            color:var(--text);
+            font-family:'Inter',sans-serif;
+            -webkit-font-smoothing:antialiased;
+            overflow-x:hidden;
+            line-height:1.6;
+        }
+        h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.02em;line-height:1.1;}
+        a{color:inherit;text-decoration:none;}
+        .wrap{max-width:1280px;margin:0 auto;padding:0 32px;}
+        .mono{font-family:'JetBrains Mono',monospace;}
+        .eyebrow{
+            display:inline-flex;align-items:center;gap:8px;
+            font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
+            color:var(--bright);margin-bottom:20px;
+        }
+        .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--bright);box-shadow:0 0 10px var(--bright);}
+
+        /* NAV */
+        header{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:all .3s ease;}
+        header.scrolled{background:rgba(5,7,6,0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+        .nav-inner{display:flex;align-items:center;justify-content:space-between;}
+        .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:20px;}
+        .logo-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--jade),var(--bright));display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:14px;color:#000;}
+        nav .links{display:flex;gap:32px;}
+        nav .links a{font-size:14px;color:var(--muted);transition:color .2s;}
+        nav .links a:hover{color:var(--text);}
+        .nav-actions{display:flex;align-items:center;gap:16px;}
+        .theme-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+        .btn{padding:12px 24px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .3s ease;}
+        .btn-primary{background:var(--bright);color:#000;}
+        .btn-primary:hover{box-shadow:0 0 30px var(--glow);transform:translateY(-2px);}
+        .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text);}
+        .menu-toggle{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;}
+        @media(max-width:900px){nav .links{display:none;}.menu-toggle{display:block;}}
+
+        /* HERO - STOREFRONT VIBE */
+        .hero{padding:160px 0 100px;position:relative;overflow:hidden;}
+        .hero-bg{position:absolute;inset:0;z-index:0;}
+        .orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.3;}
+        .orb-1{width:500px;height:500px;background:var(--jade);top:-150px;left:-150px;animation:float 20s infinite ease-in-out;}
+        .orb-2{width:400px;height:400px;background:var(--accent);bottom:-100px;right:-100px;animation:float 25s infinite ease-in-out reverse;}
+        @keyframes float{0%,100%{transform:translate(0,0);}50%{transform:translate(40px,-40px);}}
+        
+        .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1;}
+        @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+        
+        .hero-content h1{font-size:clamp(40px,5vw,64px);margin-bottom:24px;}
+        .hero-content h1 span{color:var(--bright);font-style:italic;}
+        .hero-content p{font-size:18px;color:var(--muted);max-width:500px;margin-bottom:40px;}
+        .hero-stats{display:flex;gap:40px;margin-top:40px;}
+        .stat-item h4{font-family:'JetBrains Mono',monospace;font-size:32px;color:var(--bright);margin-bottom:4px;}
+        .stat-item p{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;}
+
+        /* 3D PRODUCT CARD */
+        .product-3d{perspective:1000px;display:flex;justify-content:center;}
+        .product-card{
+            width:100%;max-width:450px;
+            background:rgba(255,255,255,0.03);
+            backdrop-filter:blur(20px);
+            border:1px solid rgba(255,255,255,0.1);
+            border-radius:24px;
+            padding:30px;
+            transform-style:preserve-3d;
+            transition:transform 0.1s ease;
+            box-shadow:0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            position:relative;
+        }
+        .product-image{
+            width:100%;height:200px;
+            background:linear-gradient(135deg, var(--jade) 0%, var(--accent) 100%);
+            border-radius:16px;
+            margin-bottom:24px;
+            display:flex;align-items:center;justify-content:center;
+            font-size:60px;
+            transform:translateZ(40px);
+        }
+        .product-info{transform:translateZ(30px);}
+        .product-cat{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;}
+        .product-title{font-family:'Fraunces',serif;font-size:24px;margin-bottom:12px;}
+        .product-rating{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--bright);margin-bottom:20px;}
+        .product-price{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+        .price-val{font-family:'Fraunces',serif;font-size:32px;color:var(--text);}
+        .price-val span{font-size:14px;color:var(--muted);font-family:'Inter',sans-serif;}
+        .add-to-cart{
+            width:100%;padding:16px;border-radius:12px;
+            background:var(--bright);color:#000;
+            font-weight:700;font-size:16px;cursor:pointer;border:none;
+            transition:all .3s ease;
+        }
+        .add-to-cart:hover{box-shadow:0 0 30px var(--glow);transform:scale(1.02);}
+
+        /* ORDER SUMMARY (FEATURES) */
+        .features{padding:100px 0;}
+        .section-header{margin-bottom:60px;}
+        .section-header h2{font-size:clamp(32px,4vw,48px);margin-bottom:16px;}
+        .section-header p{color:var(--muted);font-size:16px;max-width:600px;}
+        
+        .order-summary{
+            background:var(--surface);
+            border:1px solid var(--border);
+            border-radius:24px;
+            padding:40px;
+            max-width:800px;
+            margin:0 auto;
+        }
+        .order-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;padding-bottom:20px;border-bottom:1px dashed var(--border);}
+        .order-header h3{font-size:20px;}
+        .order-id{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);}
+        
+        .order-item{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid var(--border);}
+        .order-item:last-child{border-bottom:none;}
+        .item-info{display:flex;align-items:center;gap:20px;}
+        .item-icon{width:48px;height:48px;border-radius:12px;background:var(--surface-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:24px;}
+        .item-name{font-size:16px;font-weight:500;margin-bottom:4px;}
+        .item-desc{font-size:13px;color:var(--muted);}
+        .item-status{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--bright);background:rgba(74,222,128,0.1);padding:6px 12px;border-radius:999px;}
+
+        /* CHECKOUT PROCESS */
+        .process{padding:100px 0;background:var(--surface);}
+        .tracking-container{max-width:900px;margin:0 auto;}
+        .tracking-bar{position:relative;display:flex;justify-content:space-between;margin-bottom:60px;}
+        .tracking-line{position:absolute;top:20px;left:0;right:0;height:2px;background:var(--border);z-index:0;}
+        .tracking-progress{position:absolute;top:20px;left:0;height:2px;background:var(--bright);z-index:1;width:0%;transition:width 1s ease;}
+        .tracking-step{position:relative;z-index:2;text-align:center;flex:1;}
+        .step-dot{width:40px;height:40px;border-radius:50%;background:var(--bg);border:2px solid var(--border);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:var(--muted);transition:all .3s;}
+        .tracking-step.active .step-dot{border-color:var(--bright);color:var(--bright);box-shadow:0 0 20px var(--glow);}
+        .step-label{font-size:14px;color:var(--muted);font-weight:500;}
+        .tracking-step.active .step-label{color:var(--text);}
+        
+        .process-details{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+        @media(max-width:800px){.process-details{grid-template-columns:1fr;}}
+        .process-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:30px;}
+        .process-card h4{font-size:18px;margin-bottom:12px;color:var(--bright);}
+        .process-card p{color:var(--muted);font-size:14px;}
+
+        /* PRICING */
+        .pricing{padding:100px 0;}
+        .tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+        @media(max-width:900px){.tier-grid{grid-template-columns:1fr;}}
+        
+        .tier-card{
+            background:var(--surface);
+            border:1px solid var(--border);
+            border-radius:24px;
+            padding:40px 32px;
+            position:relative;
+            transition:all 0.3s ease;
+        }
+        .tier-card.featured{
+            border-color:var(--bright);
+            background:linear-gradient(180deg, rgba(74,222,128,0.05) 0%, var(--surface) 100%);
+            transform:scale(1.05);
+        }
+        .tier-card:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(0,0,0,0.3);}
+        .tier-card.featured:hover{transform:scale(1.05) translateY(-10px);}
+        
+        .tier-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--bright);color:#000;padding:6px 16px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;}
+        .tier-name{font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;}
+        .tier-price{font-family:'Fraunces',serif;font-size:48px;margin-bottom:8px;}
+        .tier-price span{font-size:16px;color:var(--muted);font-family:'Inter',sans-serif;}
+        .tier-desc{color:var(--muted);font-size:14px;margin-bottom:32px;min-height:40px;}
+        .tier-features{list-style:none;margin-bottom:32px;}
+        .tier-features li{display:flex;align-items:center;gap:12px;font-size:14px;margin-bottom:16px;color:var(--text);}
+        .tier-features li::before{content:"✓";color:var(--bright);font-weight:700;}
+        .tier-btn{width:100%;padding:14px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all 0.3s;}
+        .tier-btn.primary{background:var(--bright);color:#000;}
+        .tier-btn.primary:hover{box-shadow:0 0 20px var(--glow);}
+        .tier-btn.secondary{background:transparent;border:1px solid var(--border);color:var(--text);}
+        .tier-btn.secondary:hover{border-color:var(--bright);color:var(--bright);}
+
+        /* FAQ */
+        .faq{padding:100px 0;}
+        .faq-list{max-width:800px;margin:0 auto;}
+        .faq-item{border-bottom:1px solid var(--border);}
+        .faq-q{width:100%;padding:24px 0;background:none;border:none;color:var(--text);font-size:18px;font-family:'Fraunces',serif;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+        .faq-q .icon{font-size:24px;color:var(--bright);transition:transform 0.3s;}
+        .faq-item.active .faq-q .icon{transform:rotate(45deg);}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+        .faq-a p{padding-bottom:24px;color:var(--muted);font-size:15px;line-height:1.7;}
+
+        /* CTA */
+        .cta{padding:100px 0;}
+        .cta-box{
+            background:linear-gradient(135deg, var(--jade) 0%, #000 100%);
+            border-radius:32px;
+            padding:80px 40px;
+            text-align:center;
+            position:relative;
+            overflow:hidden;
+        }
+        .cta-box::before{content:"";position:absolute;inset:0;background:url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>');opacity:0.3;}
+        .cta-box h2{font-size:clamp(32px,4vw,48px);margin-bottom:20px;position:relative;z-index:1;}
+        .cta-box p{color:rgba(255,255,255,0.7);font-size:18px;margin-bottom:40px;position:relative;z-index:1;}
+        .cta-box .btn{position:relative;z-index:1;}
+
+        /* FOOTER */
+        footer{border-top:1px solid var(--border);padding:60px 0 30px;}
+        .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+        @media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr;}}
+        .foot-grid h4{font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:20px;}
+        .foot-grid ul{list-style:none;}
+        .foot-grid ul li{margin-bottom:12px;}
+        .foot-grid ul a{color:var(--text);font-size:14px;transition:color 0.2s;}
+        .foot-grid ul a:hover{color:var(--bright);}
+        .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:30px;border-top:1px solid var(--border);font-size:13px;color:var(--muted);}
+        .wa-float{position:fixed;bottom:30px;right:30px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#000;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 10px 30px rgba(37,211,102,0.4);transition:transform 0.3s;z-index:100;}
+        .wa-float:hover{transform:scale(1.1);}
+    </style>
+</head>
+<body>
+    <header id="top">
+        <div class="wrap nav-inner">
+            <a href="../index.html" class="logo"><div class="logo-mark">e.</div><span>Ello</span></a>
+            
+            <div class="nav-actions">
+                <button class="theme-btn" id="themeToggle">🌙</button>
+                <a href="../contact.html" class="btn btn-primary">Start Project</a>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-bg">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+            </div>
+            <div class="wrap hero-grid">
+                <div class="hero-content">
+                    <div class="eyebrow">Service 02 · E-commerce</div>
+                    <h1>Stores that <span>sell</span> themselves.</h1>
+                    <p>From Shopify setups to fully custom platforms. We build high-converting e-commerce experiences that turn browsers into loyal buyers.</p>
+                    <div style="display:flex;gap:16px;">
+                        <a href="../contact.html" class="btn btn-primary">Start Your Store</a>
+                        <a href="#features" class="btn btn-ghost">View Features</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h4>+180%</h4>
+                            <p>Avg. Conversion Lift</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>&lt;2s</h4>
+                            <p>Checkout Load Time</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>24/7</h4>
+                            <p>Store Uptime</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-3d" id="product3d">
+                    <div class="product-card" id="prodCard">
+                        <div class="product-image">️</div>
+                        <div class="product-info">
+                            <div class="product-cat">Ello Premium Store</div>
+                            <div class="product-title">High-Converting E-commerce Build</div>
+                            <div class="product-rating">★★★★★ <span style="color:var(--muted);font-size:12px;">(50+ Happy Clients)</span></div>
+                            <div class="product-price">
+                                <div class="price-val">PKR 15K<span> / starting</span></div>
+                            </div>
+                            <button class="add-to-cart" onclick="window.location.href='../contact.html'">Add to Cart →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ORDER SUMMARY (FEATURES) -->
+        <section class="features" id="features">
+            <div class="wrap">
+                <div class="section-header">
+                    <div class="eyebrow">What's Included</div>
+                    <h2>Your Order Summary.</h2>
+                    <p>Everything you get when you partner with us for your e-commerce build.</p>
+                </div>
+                
+                <div class="order-summary">
+                    <div class="order-header">
+                        <h3>Order Details</h3>
+                        <div class="order-id">#ELLO-ECOM-2026</div>
+                    </div>
+                    
+                    <div class="order-item">
+                        <div class="item-info">
+                            <div class="item-icon">🛒</div>
+                            <div>
+                                <div class="item-name">Shopify / Custom Store Setup</div>
+                                <div class="item-desc">Full store configuration, theme customization, and product upload.</div>
+                            </div>
+                        </div>
+                        <div class="item-status">INCLUDED</div>
+                    </div>
+                    
+                    <div class="order-item">
+                        <div class="item-info">
+                            <div class="item-icon">💳</div>
+                            <div>
+                                <div class="item-name">Payment Gateway Integration</div>
+                                <div class="item-desc">Stripe, PayPal, JazzCash, EasyPaisa — ready to accept payments globally.</div>
+                            </div>
+                        </div>
+                        <div class="item-status">INCLUDED</div>
+                    </div>
+                    
+                    <div class="order-item">
+                        <div class="item-info">
+                            <div class="item-icon">📦</div>
+                            <div>
+                                <div class="item-name">Inventory & Shipping Setup</div>
+                                <div class="item-desc">Automated stock tracking, shipping zones, and tax calculations.</div>
+                            </div>
+                        </div>
+                        <div class="item-status">INCLUDED</div>
+                    </div>
+                    
+                    <div class="order-item">
+                        <div class="item-info">
+                            <div class="item-icon"></div>
+                            <div>
+                                <div class="item-name">Mobile-Optimized Checkout</div>
+                                <div class="item-desc">Frictionless mobile experience to reduce cart abandonment by up to 40%.</div>
+                            </div>
+                        </div>
+                        <div class="item-status">INCLUDED</div>
+                    </div>
+                    
+                    <div class="order-item">
+                        <div class="item-info">
+                            <div class="item-icon">📈</div>
+                            <div>
+                                <div class="item-name">Analytics & Conversion Tracking</div>
+                                <div class="item-desc">Google Analytics 4, Facebook Pixel, and custom event tracking setup.</div>
+                            </div>
+                        </div>
+                        <div class="item-status">INCLUDED</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHECKOUT PROCESS -->
+        <section class="process">
+            <div class="wrap">
+                <div class="section-header" style="text-align:center;margin:0 auto 60px;">
+                    <div class="eyebrow">How It Works</div>
+                    <h2>Order Tracking.</h2>
+                    <p>From discovery to launch, here's how we deliver your store.</p>
+                </div>
+                
+                <div class="tracking-container">
+                    <div class="tracking-bar">
+                        <div class="tracking-line"></div>
+                        <div class="tracking-progress" id="trackProgress"></div>
+                        <div class="tracking-step active">
+                            <div class="step-dot">01</div>
+                            <div class="step-label">Cart</div>
+                        </div>
+                        <div class="tracking-step">
+                            <div class="step-dot">02</div>
+                            <div class="step-label">Processing</div>
+                        </div>
+                        <div class="tracking-step">
+                            <div class="step-dot">03</div>
+                            <div class="step-label">Shipping</div>
+                        </div>
+                        <div class="tracking-step">
+                            <div class="step-dot">04</div>
+                            <div class="step-label">Delivered</div>
+                        </div>
+                    </div>
+                    
+                    <div class="process-details">
+                        <div class="process-card">
+                            <h4>01. Cart (Discovery)</h4>
+                            <p>We review your products, target audience, and competitors to plan the perfect store architecture.</p>
+                        </div>
+                        <div class="process-card">
+                            <h4>02. Processing (Design & Dev)</h4>
+                            <p>We design a high-converting UI and build the store with clean code and fast load times.</p>
+                        </div>
+                        <div class="process-card">
+                            <h4>03. Shipping (Testing)</h4>
+                            <p>Rigorous testing of checkout flows, payment gateways, and mobile responsiveness.</p>
+                        </div>
+                        <div class="process-card">
+                            <h4>04. Delivered (Launch)</h4>
+                            <p>We deploy your store, train your team, and provide 30 days of post-launch support.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING -->
+        <section class="pricing">
+            <div class="wrap">
+                <div class="section-header" style="text-align:center;margin:0 auto 60px;">
+                    <div class="eyebrow">Pricing</div>
+                    <h2>Select Your Package.</h2>
+                </div>
+                
+                <div class="tier-grid">
+                    <div class="tier-card">
+                        <div class="tier-name">Starter Store</div>
+                        <div class="tier-price">PKR 15K<span></span></div>
+                        <div class="tier-desc">Perfect for small businesses launching their first online store.</div>
+                        <ul class="tier-features">
+                            <li>Shopify Basic Setup</li>
+                            <li>Up to 20 Products</li>
+                            <li>Standard Theme Customization</li>
+                            <li>Payment Gateway Setup</li>
+                            <li>14 Days Support</li>
+                        </ul>
+                        <button class="tier-btn secondary">Select Plan</button>
+                    </div>
+                    
+                    <div class="tier-card featured">
+                        <div class="tier-badge">Best Seller</div>
+                        <div class="tier-name">Growth Store</div>
+                        <div class="tier-price">PKR 22K<span></span></div>
+                        <div class="tier-desc">For brands ready to scale with custom features and marketing tools.</div>
+                        <ul class="tier-features">
+                            <li>Custom Theme Development</li>
+                            <li>Unlimited Products</li>
+                            <li>Advanced SEO Setup</li>
+                            <li>Email Marketing Integration</li>
+                            <li>30 Days Priority Support</li>
+                        </ul>
+                        <button class="tier-btn primary">Select Plan</button>
+                    </div>
+                    
+                    <div class="tier-card">
+                        <div class="tier-name">Enterprise</div>
+                        <div class="tier-price">Custom<span></span></div>
+                        <div class="tier-desc">For high-volume stores needing custom apps and complex logic.</div>
+                        <ul class="tier-features">
+                            <li>Custom Shopify App Development</li>
+                            <li>Multi-currency & Multi-language</li>
+                            <li>ERP/CRM Integrations</li>
+                            <li>Dedicated Account Manager</li>
+                            <li>24/7 Priority Support</li>
+                        </ul>
+                        <button class="tier-btn secondary">Contact Us</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq">
+            <div class="wrap">
+                <div class="section-header" style="text-align:center;margin:0 auto 60px;">
+                    <div class="eyebrow">FAQ</div>
+                    <h2>Common Questions.</h2>
+                </div>
+                
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-q">Shopify or Custom Build — which is better?<span class="icon">+</span></button>
+                        <div class="faq-a"><p>Shopify is best for 90% of businesses due to its ease of use and security. We recommend custom builds only if you have highly unique workflows that Shopify can't handle.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q">Do you upload my products?<span class="icon">+</span></button>
+                        <div class="faq-a"><p>Yes! We can upload your initial product catalog, including images, descriptions, and variants, so your store is ready to sell on day one.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q">What payment methods can I accept?<span class="icon">+</span></button>
+                        <div class="faq-a"><p>We integrate all major gateways: Stripe, PayPal, and local Pakistani options like JazzCash and EasyPaisa. You can accept payments globally.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-q">Will my store work on mobile?<span class="icon">+</span></button>
+                        <div class="faq-a"><p>Absolutely. Over 70% of e-commerce traffic is mobile. We design mobile-first and test rigorously on all devices to ensure a flawless checkout experience.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta">
+            <div class="wrap">
+                <div class="cta-box">
+                    <h2>Ready to launch your store?</h2>
+                    <p>Let's build an e-commerce experience your customers will love.</p>
+                    <a href="../contact.html" class="btn btn-primary">Start Your Project</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <div class="foot-grid">
+                <div>
+                    <a href="../index.html" class="logo"><div class="logo-mark">e.</div><span>Ello</span></a>
+                    <p style="color:var(--muted);font-size:14px;margin-top:16px;max-width:300px;">Elite software agency building premium digital experiences for growing businesses.</p>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../projects.html">Projects</a></li>
+                        <li><a href="../services.html">Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="web-design.html">Web Design</a></li>
+                        <li><a href="ecommerce.html">E-commerce</a></li>
+                        <li><a href="custom-saas.html">SaaS Platforms</a></li>
+                        <li><a href="maintenance.html">Maintenance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="../contact.html">ello.services.org@gmail.com</a></li>
+                        <li><a href="https://wa.me/19177225695">+1 (917) 722-5695</a></li>
+                        <li><a href="../contact.html">Lahore, Pakistan</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <div>© 2026 Ello Agency. All rights reserved.</div>
+                <div style="display:flex;gap:24px;">
+                    <a href="../privacy.html">Privacy</a>
+                    <a href="../terms.html">Terms</a>
+                    <a href="../refund.html">Refund</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/19177225695" class="wa-float" target="_blank">💬</a>
+
+    <script>
+        // Theme Toggle
+        const themeBtn = document.getElementById('themeToggle');
+        themeBtn.addEventListener('click', () => {
+            const html = document.documentElement;
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            themeBtn.textContent = isDark ? '☀️' : '🌙';
+        });
+
+        // 3D Tilt Effect for Product Card
+        const prodCard = document.getElementById('prodCard');
+        const product3d = document.getElementById('product3d');
+        
+        product3d.addEventListener('mousemove', (e) => {
+            const rect = product3d.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -15;
+            const rotateY = ((x - centerX) / centerX) * 15;
+            prodCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+        
+        product3d.addEventListener('mouseleave', () => {
+            prodCard.style.transform = 'rotateX(0) rotateY(0)';
+        });
+
+        // Animate Tracking Bar on Scroll
+        const trackProgress = document.getElementById('trackProgress');
+        const processSection = document.querySelector('.process');
+        
+        window.addEventListener('scroll', () => {
+            const rect = processSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                trackProgress.style.width = '100%';
+                document.querySelectorAll('.tracking-step').forEach((step, i) => {
+                    setTimeout(() => {
+                        step.classList.add('active');
+                    }, i * 300);
+                });
+            }
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-q').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const answer = item.querySelector('.faq-a');
+                const isActive = item.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-a').style.maxHeight = null;
+                });
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('top');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
