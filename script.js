@@ -82,8 +82,12 @@ const coreServices = [
   ['green', '🌐', 'Website Development', 'Custom websites built with modern tech. Fast, secure, and designed to convert visitors into customers.', ['React & Next.js', 'Responsive design', 'SEO optimized', 'CMS integration']],
   ['black', '🛒', 'E-commerce & Shopify', 'Online stores that sell. From Shopify setups to custom e-commerce platforms with advanced features.', ['Shopify development', 'Payment gateways', 'Inventory management', 'Conversion optimization']],
   ['white', '⚙️', 'Custom SaaS Platforms', 'Full-stack software built to run your business. Admin dashboards, user management, and scalable architecture.', ['User authentication', 'Admin dashboards', 'API development', 'Cloud deployment']],
+<<<<<<< HEAD
   ['green', '📝', 'WordPress Development', 'Scalable, easy-to-manage websites built on WordPress. Perfect for blogs, corporate sites, and content-heavy platforms.', ['Custom themes', 'Plugin integration', 'WooCommerce', 'Easy content management']],
   ['black', '🤖', 'AI & WhatsApp Automation', 'Smart AI voice agents and WhatsApp bots that handle support, book appointments, and qualify leads 24/7.', ['AI Voice Agents', 'WhatsApp API Bots', 'Lead Qualification', 'CRM Integration']]
+=======
+  ['green', '📝', 'WordPress Development', 'Scalable, easy-to-manage websites built on WordPress. Perfect for blogs, corporate sites, and content-heavy platforms.', ['Custom themes', 'Plugin integration', 'WooCommerce', 'Easy content management']]
+>>>>>>> 478b2b8fddee06c79afabab7b2272999d0dd48f7
 ];
 
 const coreGrid = document.getElementById('coreServicesGrid');
@@ -262,6 +266,7 @@ document.querySelectorAll('.faq-q').forEach(btn => {
 
 // ---------- CONTACT FORM ----------
 const contactForm = document.getElementById('contactForm');
+<<<<<<< HEAD
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -300,6 +305,17 @@ if (contactForm) {
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
     }
+=======
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formFieldsWrap = document.getElementById('formFieldsWrap');
+    const formSuccess = document.getElementById('formSuccess');
+
+    if (formFieldsWrap) formFieldsWrap.style.display = 'none';
+    if (formSuccess) formSuccess.classList.add('show');
+>>>>>>> 478b2b8fddee06c79afabab7b2272999d0dd48f7
   });
 }
 
