@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI & WhatsApp Automation | Ello Agency</title>
+  <meta name="description" content="Smart AI voice agents and WhatsApp bots that handle support, book appointments, and qualify leads 24/7.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+  <style>
+    /* ============================================
+       CORE VARIABLES & RESET
+    ============================================ */
+    :root {
+      --bg: #050807;
+      --surface: #0d1210;
+      --surface-2: #151d19;
+      --border: rgba(74, 222, 128, 0.1);
+      --text: #eaf2ed;
+      --muted: #6b8a7a;
+      --bright: #4ade80;
+      --cyan: #00f0ff;
+      --purple: #a855f7;
+      --radius: 16px;
+      --font-main: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-main);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ============================================
+       NEURAL NETWORK CANVAS BACKGROUND
+    ============================================ */
+    #neural-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    /* ============================================
+       NAVIGATION
+    ============================================ */
+    nav {
+      position: fixed;
+      top: 20px; left: 50%;
+      transform: translateX(-50%);
+      width: 90%; max-width: 1100px;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+      background: rgba(13, 18, 16, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      transition: all 0.3s ease;
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-main); font-weight: 700; font-size: 20px;
+    }
+    .logo-mark {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(140deg, var(--bright), var(--cyan));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 14px; color: #000;
+    }
+
+    .nav-links { display: flex; gap: 8px; }
+    .nav-links a {
+      padding: 8px 16px; border-radius: 999px;
+      font-size: 14px; color: var(--muted); font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+    .nav-links a.active { color: var(--bright); background: rgba(74, 222, 128, 0.1); }
+
+    .btn-nav {
+      padding: 10px 24px; border-radius: 999px;
+      background: var(--bright); color: #000;
+      font-weight: 600; font-size: 14px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(74, 222, 128, 0.3); }
+
+    @media (max-width: 768px) { .nav-links { display: none; } }
+
+    /* ============================================
+       HERO SECTION
+    ============================================ */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px; border-radius: 999px;
+      background: rgba(74, 222, 128, 0.1);
+      border: 1px solid rgba(74, 222, 128, 0.2);
+      font-family: var(--font-mono); font-size: 12px;
+      color: var(--bright); text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 24px;
+      animation: fadeInDown 0.8s ease forwards;
+    }
+    .badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--bright);
+      box-shadow: 0 0 10px var(--bright);
+      animation: pulse 2s infinite;
+    }
+
+    h1 {
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      animation: fadeInUp 0.8s ease 0.2s forwards;
+      opacity: 0;
+    }
+    
+    .glitch-text {
+      position: relative;
+      background: linear-gradient(100deg, var(--text) 30%, var(--bright) 55%, var(--cyan) 75%, var(--text) 95%);
+      background-size: 250% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: gradShift 5s ease-in-out infinite, fadeInUp 0.8s ease 0.2s forwards;
+      opacity: 0;
+    }
+
+    .hero p {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--muted); max-width: 600px;
+      line-height: 1.6; margin-bottom: 40px;
+      animation: fadeInUp 0.8s ease 0.4s forwards;
+      opacity: 0;
+    }
+
+    .hero-btns {
+      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+      animation: fadeInUp 0.8s ease 0.6s forwards;
+      opacity: 0;
+    }
+
+    .btn {
+      padding: 16px 32px; border-radius: 999px;
+      font-weight: 600; font-size: 15px;
+      cursor: pointer; border: none;
+      transition: all 0.3s ease;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--bright), var(--cyan));
+      color: #000;
+      box-shadow: 0 10px 30px rgba(74, 222, 128, 0.3);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(74, 222, 128, 0.5); }
+    
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-ghost:hover { background: var(--surface-2); border-color: var(--bright); }
+
+    /* ============================================
+       LIVE CHAT DEMO
+    ============================================ */
+    .chat-section {
+      position: relative; z-index: 1;
+      padding: 80px 20px;
+      display: flex; justify-content: center;
+    }
+
+    .phone-mockup {
+      width: 320px;
+      background: #0d1210;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 12px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 40px rgba(74, 222, 128, 0.1);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .chat-screen {
+      background: #050807;
+      border-radius: 20px;
+      height: 500px;
+      padding: 20px;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      display: flex; align-items: center; gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .chat-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--bright), var(--cyan));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .chat-name { font-weight: 600; font-size: 14px; }
+    .chat-status { font-size: 11px; color: var(--bright); font-family: var(--font-mono); }
+
+    .chat-messages {
+      flex: 1; display: flex; flex-direction: column; gap: 12px;
+      overflow-y: auto;
+    }
+
+    .msg {
+      max-width: 85%; padding: 12px 16px;
+      border-radius: 16px; font-size: 13px; line-height: 1.5;
+      opacity: 0; transform: translateY(10px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .msg.show { opacity: 1; transform: translateY(0); }
+    
+    .msg.user {
+      align-self: flex-end;
+      background: var(--surface-2);
+      border-bottom-right-radius: 4px;
+      color: var(--text);
+    }
+    .msg.ai {
+      align-self: flex-start;
+      background: rgba(74, 222, 128, 0.1);
+      border: 1px solid rgba(74, 222, 128, 0.2);
+      border-bottom-left-radius: 4px;
+      color: var(--text);
+    }
+    .msg.ai::before {
+      content: '🤖 Ello AI';
+      display: block; font-size: 10px;
+      color: var(--bright); margin-bottom: 4px;
+      font-family: var(--font-mono);
+    }
+
+    /* ============================================
+       SPOTLIGHT FEATURES GRID
+    ============================================ */
+    .features-section {
+      position: relative; z-index: 1;
+      padding: 100px 20px;
+      max-width: 1200px; margin: 0 auto;
+    }
+
+    .section-head { text-align: center; margin-bottom: 60px; }
+    .section-head h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700; margin-bottom: 16px;
+    }
+    .section-head p { color: var(--muted); font-size: 16px; max-width: 500px; margin: 0 auto; }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .spotlight-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      cursor: default;
+    }
+    .spotlight-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(74, 222, 128, 0.3);
+    }
+
+    /* The mouse-following glow */
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(74, 222, 128, 0.15),
+        transparent 40%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .spotlight-card:hover::before { opacity: 1; }
+
+    .card-content { position: relative; z-index: 1; }
+    .card-icon {
+      width: 50px; height: 50px; border-radius: 12px;
+      background: var(--surface-2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 20px;
+      border: 1px solid var(--border);
+    }
+    .spotlight-card h3 { font-size: 20px; margin-bottom: 10px; }
+    .spotlight-card p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+    /* ============================================
+       CIRCUIT PROCESS TIMELINE
+    ============================================ */
+    .process-section {
+      position: relative; z-index: 1;
+      padding: 100px 20px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .process-container {
+      max-width: 800px; margin: 0 auto;
+      position: relative;
+    }
+
+    /* The circuit line */
+    .process-line {
+      position: absolute;
+      left: 24px; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .process-line-fill {
+      position: absolute;
+      left: 0; top: 0;
+      width: 100%; height: 0%;
+      background: linear-gradient(180deg, var(--bright), var(--cyan));
+      transition: height 1.5s ease;
+      box-shadow: 0 0 15px var(--bright);
+    }
+
+    .process-item {
+      position: relative;
+      padding-left: 70px;
+      margin-bottom: 50px;
+      opacity: 0; transform: translateX(-20px);
+      transition: all 0.6s ease;
+    }
+    .process-item.visible { opacity: 1; transform: translateX(0); }
+
+    .process-node {
+      position: absolute;
+      left: 12px; top: 0;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+      transition: all 0.4s ease;
+      z-index: 2;
+    }
+    .process-item.visible .process-node {
+      border-color: var(--bright);
+      color: var(--bright);
+      box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+      background: var(--surface);
+    }
+
+    .process-item h3 { font-size: 22px; margin-bottom: 8px; }
+    .process-item p { color: var(--muted); font-size: 15px; line-height: 1.6; }
+
+    /* ============================================
+       CTA SECTION
+    ============================================ */
+    .cta-section {
+      position: relative; z-index: 1;
+      padding: 120px 20px;
+      text-align: center;
+    }
+    .cta-box {
+      max-width: 800px; margin: 0 auto;
+      background: linear-gradient(140deg, rgba(74, 222, 128, 0.1), rgba(0, 240, 255, 0.05));
+      border: 1px solid rgba(74, 222, 128, 0.2);
+      border-radius: 24px;
+      padding: 60px 40px;
+      position: relative; overflow: hidden;
+    }
+    .cta-box::before {
+      content: ''; position: absolute;
+      top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(74, 222, 128, 0.1) 0%, transparent 60%);
+      animation: rotateBg 10s linear infinite;
+    }
+    .cta-content { position: relative; z-index: 1; }
+    .cta-box h2 { font-size: clamp(28px, 4vw, 42px); margin-bottom: 16px; }
+    .cta-box p { color: var(--muted); font-size: 16px; margin-bottom: 32px; }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--muted); font-size: 14px;
+    }
+    footer a { color: var(--bright); transition: opacity 0.2s; }
+    footer a:hover { opacity: 0.8; }
+
+    /* ============================================
+       ANIMATIONS
+    ============================================ */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
+    @keyframes gradShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    @keyframes rotateBg { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    /* Scroll Reveal Utility */
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.22, 0.9, 0.32, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  </style>
+</head>
+<body>
+
+  <!-- Neural Network Background -->
+  <canvas id="neural-canvas"></canvas>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="../index.html" class="logo">
+      <span class="logo-mark">e</span>
+      <span>Ello</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../services.html" class="active">Services</a>
+      <a href="../projects.html">Projects</a>
+      <a href="../pricing.html">Pricing</a>
+    </div>
+    <a href="../contact.html" class="btn-nav">Start Project</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="badge">AI & Automation</div>
+    <h1>
+      Automate Your Growth<br>
+      <span class="glitch-text">With Intelligent AI</span>
+    </h1>
+    <p>Deploy AI voice agents and WhatsApp bots that handle customer support, book appointments, and qualify leads 24/7 — without human intervention.</p>
+    <div class="hero-btns">
+      <a href="../contact.html" class="btn btn-primary">Build Your AI Agent </a>
+      <a href="#demo" class="btn btn-ghost">Watch Live Demo ↓</a>
+    </div>
+  </section>
+
+  <!-- Live Chat Demo -->
+  <section class="chat-section" id="demo">
+    <div class="phone-mockup">
+      <div class="chat-screen">
+        <div class="chat-header">
+          <div class="chat-avatar">🤖</div>
+          <div>
+            <div class="chat-name">Ello AI Assistant</div>
+            <div class="chat-status">● Online</div>
+          </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <!-- Messages injected by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Bento Grid -->
+  <section class="features-section">
+    <div class="section-head reveal">
+      <h2>Supercharge Your Business</h2>
+      <p>From lead generation to customer retention, our AI solutions handle it all.</p>
+    </div>
+    
+    <div class="bento-grid">
+      <div class="spotlight-card reveal">
+        <div class="card-content">
+          <div class="card-icon">🗣️</div>
+          <h3>AI Voice Agents</h3>
+          <p>Human-like voice bots that answer calls, handle FAQs, and route complex queries to your team instantly.</p>
+        </div>
+      </div>
+      
+      <div class="spotlight-card reveal">
+        <div class="card-content">
+          <div class="card-icon">💬</div>
+          <h3>WhatsApp Automation</h3>
+          <p>Official WhatsApp Business API integration. Send broadcasts, recover abandoned carts, and support customers.</p>
+        </div>
+      </div>
+      
+      <div class="spotlight-card reveal">
+        <div class="card-content">
+          <div class="card-icon"></div>
+          <h3>Lead Qualification</h3>
+          <p>AI asks the right questions, scores leads based on your criteria, and books qualified meetings directly to your calendar.</p>
+        </div>
+      </div>
+      
+      <div class="spotlight-card reveal">
+        <div class="card-content">
+          <div class="card-icon">🔗</div>
+          <h3>CRM Integration</h3>
+          <p>Seamlessly syncs with HubSpot, Salesforce, Zoho, or custom databases. No data silos, just smooth workflows.</p>
+        </div>
+      </div>
+      
+      <div class="spotlight-card reveal">
+        <div class="card-content">
+          <div class="card-icon"></div>
+          <h3>Analytics Dashboard</h3>
+          <p>Track conversation volume, resolution rates, and customer sentiment in real-time with our custom dashboard.</p>
+        </div>
+      </div>
+      
+      <div class="spotlight-card reveal">
+        <div class="card-content">
+          <div class="card-icon">⚡</div>
+          <h3>24/7 Availability</h3>
+          <p>Never miss a lead again. Your AI works nights, weekends, and holidays without taking a break.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Circuit Process Timeline -->
+  <section class="process-section">
+    <div class="section-head reveal">
+      <h2>How We Build Your AI</h2>
+      <p>A transparent, 4-step process from concept to deployment.</p>
+    </div>
+    
+    <div class="process-container">
+      <div class="process-line">
+        <div class="process-line-fill" id="processFill"></div>
+      </div>
+      
+      <div class="process-item">
+        <div class="process-node">01</div>
+        <h3>Discovery & Scripting</h3>
+        <p>We analyze your business workflows and write custom conversation scripts that match your brand voice.</p>
+      </div>
+      
+      <div class="process-item">
+        <div class="process-node">02</div>
+        <h3>AI Training & Integration</h3>
+        <p>We train the AI on your data, connect it to your CRM, and set up the WhatsApp/Voice APIs.</p>
+      </div>
+      
+      <div class="process-item">
+        <div class="process-node">03</div>
+        <h3>Testing & Refinement</h3>
+        <p>Rigorous testing with edge cases. We tweak prompts and logic until the AI handles 95% of queries perfectly.</p>
+      </div>
+      
+      <div class="process-item">
+        <div class="process-node">04</div>
+        <h3>Launch & Monitor</h3>
+        <p>Go live! We monitor performance, provide monthly reports, and continuously improve the AI's accuracy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-box reveal">
+      <div class="cta-content">
+        <h2>Ready to Automate?</h2>
+        <p>Stop losing leads to slow response times. Let's build an AI system that works while you sleep.</p>
+        <a href="../contact.html" class="btn btn-primary">Get a Free Consultation 🚀</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Ello Agency. Built with ❤️ and AI. <a href="../index.html">Back to Home</a></p>
+  </footer>
+
+  <script>
+    /* ============================================
+       NEURAL NETWORK CANVAS ANIMATION
+    ============================================ */
+    const canvas = document.getElementById('neural-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const particleCount = 60; // Adjust for performance
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = Math.random() * 2 + 1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(74, 222, 128, 0.5)';
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+        
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(74, 222, 128, ${0.15 - dist/1000})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateCanvas);
+    }
+    animateCanvas();
+
+    /* ============================================
+       MOUSE TRACKING FOR SPOTLIGHT CARDS
+    ============================================ */
+    document.querySelectorAll('.spotlight-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    /* ============================================
+       SCROLL REVEAL OBSERVER
+    ============================================ */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          
+          // Special animation for process line
+          if (entry.target.classList.contains('process-item')) {
+            const items = document.querySelectorAll('.process-item');
+            const index = Array.from(items).indexOf(entry.target);
+            const fill = document.getElementById('processFill');
+            const percentage = ((index + 1) / items.length) * 100;
+            fill.style.height = `${percentage}%`;
+          }
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.reveal, .process-item').forEach(el => observer.observe(el));
+
+    /* ============================================
+       AI CHAT SIMULATION
+    ============================================ */
+    const chatMessages = document.getElementById('chatMessages');
+    const conversation = [
+      { type: 'user', text: "Hi! I want to book an appointment for tomorrow.", delay: 1000 },
+      { type: 'ai', text: "Hello! I'd be happy to help. What time works best for you tomorrow?", delay: 2000 },
+      { type: 'user', text: "Around 3:00 PM if possible.", delay: 3500 },
+      { type: 'ai', text: "Great! I've booked you for tomorrow at 3:00 PM. You'll receive a confirmation on WhatsApp shortly. Is there anything else?", delay: 5500 },
+      { type: 'user', text: "No, that's all. Thanks!", delay: 7500 },
+      { type: 'ai', text: "You're welcome! Have a great day. 🌟", delay: 9000 }
+    ];
+
+    function runChatSimulation() {
+      chatMessages.innerHTML = '';
+      conversation.forEach((msg, index) => {
+        setTimeout(() => {
+          const div = document.createElement('div');
+          div.className = `msg ${msg.type}`;
+          div.textContent = msg.text;
+          chatMessages.appendChild(div);
+          
+          // Trigger reflow for animation
+          setTimeout(() => div.classList.add('show'), 50);
+          
+          // Auto scroll to bottom
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          
+          // Loop the chat
+          if (index === conversation.length - 1) {
+            setTimeout(runChatSimulation, 4000);
+          }
+        }, msg.delay);
+      });
+    }
+
+    // Start chat when section is visible
+    const chatObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          runChatSimulation();
+          chatObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    chatObserver.observe(document.querySelector('.chat-section'));
+
+  </script>
+</body>
+</html>
