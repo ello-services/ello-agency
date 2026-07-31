@@ -1,10 +1,14 @@
+// ============================================
+// ELLO AGENCY - MAIN JAVASCRIPT
+// ============================================
+
 // ---------- THEME TOGGLE ----------
 const root = document.documentElement;
 const themeBtn = document.getElementById("themeToggle");
 
 function setTheme(theme) {
   root.setAttribute("data-theme", theme);
-  themeBtn.textContent = theme === "light" ? "☀️" : "🌙";
+  themeBtn.textContent = theme === "light" ? "️" : "🌙";
   localStorage.setItem("ello-theme", theme);
 }
 
@@ -47,23 +51,22 @@ const codeLines = [
 ];
 
 const typedEl = document.getElementById('typedCode');
-
 if (typedEl) {
   let li = 0, ci = 0, buffer = '';
-
+  
   function typeStep() {
     if (li >= codeLines.length) {
       typedEl.innerHTML = buffer + '<span class="cursor"></span>';
       return;
     }
-
+    
     const seg = codeLines[li];
     if (ci === 0) buffer += `<span class="${seg.c}">`;
     ci++;
-
+    
     const partial = seg.t.slice(0, ci);
     typedEl.innerHTML = buffer + partial.replace(/\n/g, '<br>') + '</span><span class="cursor"></span>';
-
+    
     if (ci >= seg.t.length) {
       buffer += seg.t.replace(/\n/g, '<br>') + '</span>';
       li++;
@@ -73,21 +76,17 @@ if (typedEl) {
       setTimeout(typeStep, 22);
     }
   }
-
+  
   typeStep();
 }
 
 // ---------- DATA ----------
 const coreServices = [
-  ['green', '🌐', 'Website Development', 'Custom websites built with modern tech. Fast, secure, and designed to convert visitors into customers.', ['React & Next.js', 'Responsive design', 'SEO optimized', 'CMS integration']],
+  ['green', '', 'Website Development', 'Custom websites built with modern tech. Fast, secure, and designed to convert visitors into customers.', ['React & Next.js', 'Responsive design', 'SEO optimized', 'CMS integration']],
   ['black', '🛒', 'E-commerce & Shopify', 'Online stores that sell. From Shopify setups to custom e-commerce platforms with advanced features.', ['Shopify development', 'Payment gateways', 'Inventory management', 'Conversion optimization']],
   ['white', '⚙️', 'Custom SaaS Platforms', 'Full-stack software built to run your business. Admin dashboards, user management, and scalable architecture.', ['User authentication', 'Admin dashboards', 'API development', 'Cloud deployment']],
-<<<<<<< HEAD
   ['green', '📝', 'WordPress Development', 'Scalable, easy-to-manage websites built on WordPress. Perfect for blogs, corporate sites, and content-heavy platforms.', ['Custom themes', 'Plugin integration', 'WooCommerce', 'Easy content management']],
   ['black', '🤖', 'AI & WhatsApp Automation', 'Smart AI voice agents and WhatsApp bots that handle support, book appointments, and qualify leads 24/7.', ['AI Voice Agents', 'WhatsApp API Bots', 'Lead Qualification', 'CRM Integration']]
-=======
-  ['green', '📝', 'WordPress Development', 'Scalable, easy-to-manage websites built on WordPress. Perfect for blogs, corporate sites, and content-heavy platforms.', ['Custom themes', 'Plugin integration', 'WooCommerce', 'Easy content management']]
->>>>>>> 478b2b8fddee06c79afabab7b2272999d0dd48f7
 ];
 
 const coreGrid = document.getElementById('coreServicesGrid');
@@ -115,7 +114,6 @@ const steps = [
 ];
 
 const processList = document.getElementById('processList');
-
 if (processList) {
   steps.forEach(([title, desc], i) => {
     processList.insertAdjacentHTML('beforeend', `
@@ -138,7 +136,6 @@ const portfolio = [
 ];
 
 const pfGrid = document.getElementById('portfolioGrid');
-
 if (pfGrid) {
   portfolio.forEach(([cat, name, desc, tech1, tech2, tech3, val1, label1, val2, label2]) => {
     pfGrid.insertAdjacentHTML('beforeend', `
@@ -179,7 +176,6 @@ const plans = [
 ];
 
 const priceGrid = document.getElementById('pricingGrid');
-
 if (priceGrid) {
   plans.forEach(([name, price, unit, featured, items]) => {
     priceGrid.insertAdjacentHTML('beforeend', `
@@ -203,7 +199,6 @@ const testimonials = [
 ];
 
 const testGrid = document.getElementById('testGrid');
-
 if (testGrid) {
   function renderTestCard([quote, name, role, imgId]) {
     return `
@@ -219,7 +214,7 @@ if (testGrid) {
       </div>
     `;
   }
-
+  
   // Render twice for infinite loop
   testimonials.concat(testimonials).forEach(t => {
     testGrid.insertAdjacentHTML('beforeend', renderTestCard(t));
@@ -239,7 +234,12 @@ const faqs = [
 const faqList = document.getElementById('faqList');
 if (faqList) {
   faqs.forEach(([q, a]) => {
-    faqList.insertAdjacentHTML('beforeend', `<div class="faq-item reveal"> <button class="faq-q">${q}<span class="plus">+</span></button> <div class="faq-a"><p>${a}</p></div> </div>`);
+    faqList.insertAdjacentHTML('beforeend', `
+      <div class="faq-item reveal">
+        <button class="faq-q">${q}<span class="plus">+</span></button>
+        <div class="faq-a"><p>${a}</p></div>
+      </div>
+    `);
   });
 }
 
@@ -266,7 +266,6 @@ document.querySelectorAll('.faq-q').forEach(btn => {
 
 // ---------- CONTACT FORM ----------
 const contactForm = document.getElementById('contactForm');
-<<<<<<< HEAD
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -281,7 +280,7 @@ if (contactForm) {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      // Send data to our new backend API
+      // Send to backend API
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -297,31 +296,20 @@ if (contactForm) {
         if (formSuccess) formSuccess.classList.add('show');
         contactForm.reset();
       } else {
-        alert('Failed to send message: ' + result.message);
+        alert('Failed to send: ' + result.message);
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
       }
     } catch (error) {
       alert('Network error. Please try again.');
-    } finally {
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
     }
-=======
-
-if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formFieldsWrap = document.getElementById('formFieldsWrap');
-    const formSuccess = document.getElementById('formSuccess');
-
-    if (formFieldsWrap) formFieldsWrap.style.display = 'none';
-    if (formSuccess) formSuccess.classList.add('show');
->>>>>>> 478b2b8fddee06c79afabab7b2272999d0dd48f7
   });
 }
 
 // ---------- WHATSAPP FLOAT ----------
 const waFloat = document.getElementById('waFloat');
-
 if (waFloat) {
   waFloat.addEventListener('click', (e) => {
     e.preventDefault();
@@ -331,7 +319,6 @@ if (waFloat) {
 
 // ---------- HEADER SCROLL STATE ----------
 const headerEl = document.querySelector('header');
-
 if (headerEl) {
   window.addEventListener('scroll', () => {
     headerEl.classList.toggle('scrolled', window.scrollY > 20);
@@ -360,21 +347,21 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 // ---------- ANIMATED COUNTERS ----------
 function animateCount(el) {
   const raw = el.textContent.trim();
-  const match = raw.match(/^([^\d]*)(\d+)(.*)$/);
+  const match = raw.match(/^([^\d])(\d+)(.)$/);
   if (!match) return;
-
+  
   const [, prefix, num, suffix] = match;
   const target = parseInt(num, 10);
   const start = performance.now();
   const duration = 1100;
-
+  
   function step(now) {
     const p = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - p, 3);
     el.textContent = prefix + Math.round(target * eased) + suffix;
     if (p < 1) requestAnimationFrame(step);
   }
-
+  
   requestAnimationFrame(step);
 }
 
@@ -399,6 +386,7 @@ function addTilt(selector, strength) {
       const py = (e.clientY - r.top) / r.height - 0.5;
       card.style.transform = `perspective(700px) rotateX(${-py * strength}deg) rotateY(${px * strength}deg) translateY(-4px)`;
     });
+    
     card.addEventListener('mouseleave', () => {
       card.style.transform = '';
     });
@@ -418,6 +406,7 @@ document.querySelectorAll('.btn-primary').forEach(btn => {
     const my = (e.clientY - r.top - r.height / 2) * 0.35;
     btn.style.transform = `translate(${mx}px, ${my}px)`;
   });
+  
   btn.addEventListener('mouseleave', () => {
     btn.style.transform = '';
   });
@@ -425,7 +414,6 @@ document.querySelectorAll('.btn-primary').forEach(btn => {
 
 // ---------- SMOOTH ACTIVE NAV ----------
 const navLinks = document.querySelectorAll("header nav a");
-
 window.addEventListener("scroll", () => {
   let current = "";
   document.querySelectorAll("section").forEach(section => {
@@ -434,7 +422,7 @@ window.addEventListener("scroll", () => {
       current = section.getAttribute("id");
     }
   });
-
+  
   navLinks.forEach(link => {
     link.classList.remove("active");
     if (link.getAttribute("href") === "#" + current) {
