@@ -2,22 +2,18 @@
   "name": "ello-agency-main",
   "version": "1.0.0",
   "type": "module",
-  "description": "A modern, responsive, and production-ready website for Ello, a full-stack software agency.",
+  "description": "Ello Agency Website",
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ello-services/ello-agency.git"
+    "url": "https://github.com/ello-services/ello-agency.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ello-services/ello-agency/issues"
-  },
-  "homepage": "https://github.com/ello-services/ello-agency#readme",
   "dependencies": {
     "mongoose": "^8.0.0",
     "resend": "^3.0.0"

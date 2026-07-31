@@ -8,7 +8,7 @@ const themeBtn = document.getElementById("themeToggle");
 
 function setTheme(theme) {
   root.setAttribute("data-theme", theme);
-  themeBtn.textContent = theme === "light" ? "️" : "🌙";
+  themeBtn.textContent = theme === "light" ? "🌙" : "☀️";
   localStorage.setItem("ello-theme", theme);
 }
 
