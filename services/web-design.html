@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Website Development | Ello - Custom Websites Built to Convert</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@0..144,400;0..144,600;0..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+</head>
+<body>
+
+  <header>
+    <div class="nav-shell">
+      <nav class="nav">
+        <a href="../index.html" class="logo">
+          <img src="../logo.png" alt="Ello" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="logo-mark" style="display:none;">e</span>
+          <span>Ello</span>
+        </a>
+        <div class="links">
+          <a href="../index.html">Home</a>
+          <a href="../about.html">About</a>
+          <a href="../services.html" class="active">Services</a>
+          <a href="../projects.html">Projects</a>
+          <a href="../pricing.html">Pricing</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <button id="themeToggle" class="theme-btn" aria-label="Toggle theme"></button>
+          <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu"></button>
+        </div>
+      </nav>
+      <div id="mobileMenu" class="mobile-menu">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../services.html">Services</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="blob-bg">
+      <div class="blob blob-a"></div>
+      <div class="blob blob-b"></div>
+    </div>
+    <div class="wrap">
+      <div class="page-hero-content">
+        <div class="eyebrow">Service 01 · Web Design</div>
+        <h1 class="grad-text">Custom-coded websites<br>built to convert.</h1>
+        <p class="lead">Most agencies sell you a template and call it a website. We don't. Every site we build is custom-coded from scratch using modern frameworks like React and Next.js — which means faster load times, better SEO, and a foundation that scales with your business.</p>
+        <div class="hero-ctas" style="justify-content: flex-start; margin-top: 32px;">
+          <a href="../contact.html" class="btn btn-primary">Get a Quote</a>
+          <a href="../projects.html" class="btn btn-ghost">See Our Work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="numbers-section">
+    <div class="wrap">
+      <div class="numbers-grid">
+        <div class="number-card"><div class="number">1-2</div><div class="number-label">Weeks to launch</div></div>
+        <div class="number-card"><div class="number">&lt;2s</div><div class="number-label">Load time</div></div>
+        <div class="number-card"><div class="number">100</div><div class="number-label">Lighthouse score</div></div>
+        <div class="number-card"><div class="number">SEO</div><div class="number-label">Optimized</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">What we build</div>
+        <h2>Websites that work as hard as you do</h2>
+        <p>Whether you need a simple 5-page business site or a complex corporate portal, we design and develop it to convert visitors into leads and customers. No bloated page builders. No slow-loading plugins. Just clean, fast code.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🏢</div>
+          <h3>Business & Landing Pages</h3>
+          <p>Clean, conversion-focused pages that clearly communicate your value and guide visitors to take action.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏛️</div>
+          <h3>Corporate Websites</h3>
+          <p>Multi-page sites for established businesses with team pages, services, case studies, and contact systems.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"></div>
+          <h3>Portfolio Sites</h3>
+          <p>Stunning showcases for creatives, agencies, and freelancers with smooth animations and gallery layouts.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📝</div>
+          <h3>Blog & Content Platforms</h3>
+          <p>Content-first sites with CMS integration so you can publish articles without touching code.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">️</div>
+          <h3>CMS Integration</h3>
+          <p>Sanity, Strapi, or WordPress headless — edit your content through a clean admin interface.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Mobile-First Design</h3>
+          <p>Every site is designed mobile-first and tested across all devices and screen sizes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section" style="background: var(--surface);">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Our process</div>
+        <h2>How we build your website</h2>
+      </div>
+      <div class="process-list">
+        <div class="process-item">
+          <div class="process-num">01</div>
+          <div><h3>Discovery Call</h3><p>We learn about your business, goals, target audience, and competitors. This shapes everything we build.</p></div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">02</div>
+          <div><h3>Design in Figma</h3><p>We design your site in Figma first. You see exactly how it will look before we write a single line of code.</p></div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">03</div>
+          <div><h3>Development</h3><p>We build with React/Next.js, optimize for speed, and make sure everything works flawlessly.</p></div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">04</div>
+          <div><h3>Launch & Support</h3><p>We deploy to Vercel, set up your domain, and provide ongoing support to keep everything running.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Pricing</div>
+        <h2>Transparent pricing</h2>
+      </div>
+      <div class="pricing-highlight">
+        <div class="price-tag">From PKR 12,000</div>
+        <div class="price-timeline">1-2 weeks delivery</div>
+        <p style="color: var(--muted); margin-top: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">Every project is scoped individually. We'll give you a fixed quote after a short discovery call — no surprises, no hidden fees.</p>
+        <a href="../contact.html" class="btn btn-primary" style="margin-top: 30px;">Get Your Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section" style="background: var(--surface);">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">FAQs</div>
+        <h2>Common questions</h2>
+      </div>
+      <div id="faqList" style="max-width: 700px;">
+        <div class="faq-item"><button class="faq-q">How long does a website take to build?<span class="plus">+</span></button><div class="faq-a"><p>Most business websites launch in 1-2 weeks. More complex sites with custom features may take 3-4 weeks.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Do you use WordPress or page builders?<span class="plus">+</span></button><div class="faq-a"><p>No. We build with React and Next.js for faster, more secure, and more scalable websites.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Will my website be mobile-friendly?<span class="plus">+</span></button><div class="faq-a"><p>Yes. Every site we build is mobile-first and tested across all devices.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Can I update the content myself?<span class="plus">+</span></button><div class="faq-a"><p>Yes. We can integrate a CMS like Sanity or Strapi so you can edit content without code.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Do you provide hosting?<span class="plus">+</span></button><div class="faq-a"><p>We deploy to Vercel (free tier available) and can help you set up a custom domain.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Ready to build your website?</h2>
+        <p>Tell us about your project. We'll reply within a few hours.</p>
+        <a href="../contact.html" class="btn btn-primary btn-lg">Start Your Project</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <a href="../index.html" class="logo" style="margin-bottom:16px;display:inline-flex;">
+            <img src="../logo.png" alt="Ello" class="logo-img" style="width: 32px; height: 32px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="logo-mark" style="display:none;">e</span>
+            <span>Ello</span>
+          </a>
+          <p class="foot-desc">Elite software agency building premium digital experiences for growing businesses.</p>
+          <div class="social-links">
+            <a href="https://wa.me/19144551903" target="_blank" aria-label="WhatsApp">💬</a>
+            <a href="https://instagram.com/ello.soft" target="_blank" aria-label="Instagram"></a>
+          </div>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+            <li><a href="../services.html">Services</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li><a href="web-design.html">Web Design</a></li>
+            <li><a href="ecommerce.html">E-commerce</a></li>
+            <li><a href="custom-saas.html">SaaS Platforms</a></li>
+            <li><a href="maintenance.html">Maintenance</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact Info</h4>
+          <ul>
+            <li> Lahore, Pakistan</li>
+            <li>📞 <a href="tel:+19144551903">+1 (914) 455-1903</a></li>
+            <li>✉️ <a href="mailto:ello.services.org@gmail.com">ello.services.org@gmail.com</a></li>
+            <li>💬 <a href="https://wa.me/19144551903" target="_blank">WhatsApp Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Ello Agency. All rights reserved.</span>
+        <div class="legal">
+          <a href="../privacy.html">Privacy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="../refund.html">Refund</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a id="waFloat" href="https://wa.me/19144551903" class="wa-float" aria-label="Chat on WhatsApp" target="_blank" rel="noopener">💬</a>
+  <script src="../script.js"></script>
+</body>
+</html>

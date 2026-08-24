@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Projects | Ello - Premium Software Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@0..144,400;0..144,600;0..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+
+  <header>
+    <div class="nav-shell">
+      <nav class="nav">
+        <a href="index.html" class="logo">
+          <img src="logo.png" alt="Ello" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="logo-mark" style="display:none;">e</span>
+          <span>Ello</span>
+        </a>
+        <div class="links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="projects.html" class="active">Projects</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <button id="themeToggle" class="theme-btn" aria-label="Toggle theme"></button>
+          <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">☰</button>
+        </div>
+      </nav>
+      <div id="mobileMenu" class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="blob-bg">
+      <div class="blob blob-a"></div>
+      <div class="blob blob-b"></div>
+    </div>
+    <div class="wrap">
+      <div class="page-hero-content">
+        <div class="eyebrow">Our Work</div>
+        <h1 class="grad-text">Projects that drive<br>real business results</h1>
+        <p class="lead">A curated selection of websites, e-commerce stores, and custom platforms we've designed, built, and shipped for our clients.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section">
+    <div class="wrap">
+      <div class="filter-bar">
+        <button class="filter-btn active">All Projects</button>
+        <button class="filter-btn">E-commerce</button>
+        <button class="filter-btn">SaaS Platforms</button>
+        <button class="filter-btn">Websites</button>
+        <button class="filter-btn">Shopify</button>
+      </div>
+
+      <div class="pf-grid-2" style="margin-top: 50px;">
+        
+        <!-- Project 1 -->
+        <div class="pf-card pf-card-lg">
+          <div class="pf-thumb">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop" alt="Northline Retail" loading="lazy">
+            <div class="pf-overlay">
+              <div class="pf-preview">
+                <div class="pf-preview-content">
+                  <div class="pf-preview-header">Northline Retail</div>
+                  <div class="pf-preview-stats">
+                    <span class="stat">+180% Sales</span>
+                    <span class="stat">2.1s Load</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pf-body">
+            <div class="pf-header">
+              <h3>Northline Retail</h3>
+              <span class="pf-year">2025</span>
+            </div>
+            <p>Custom e-commerce platform with advanced inventory management, multi-vendor support, and a custom checkout flow that increased conversions by 180%.</p>
+            <div class="pf-tech">
+              <span>Next.js</span><span>Node.js</span><span>MongoDB</span><span>Stripe</span>
+            </div>
+            <div class="pf-results">
+              <div class="result-item"><span class="result-value">+180%</span><span class="result-label">Sales Increase</span></div>
+              <div class="result-item"><span class="result-value">2.1s</span><span class="result-label">Load Time</span></div>
+            </div>
+            <a href="#" class="pf-link">View Case Study →</a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="pf-card pf-card-lg">
+          <div class="pf-thumb">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop" alt="KappCore" loading="lazy">
+            <div class="pf-overlay">
+              <div class="pf-preview">
+                <div class="pf-preview-content">
+                  <div class="pf-preview-header">KappCore Dashboard</div>
+                  <div class="pf-preview-stats">
+                    <span class="stat">500+ Users</span>
+                    <span class="stat">99.9% Uptime</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pf-body">
+            <div class="pf-header">
+              <h3>KappCore</h3>
+              <span class="pf-year">2025</span>
+            </div>
+            <p>Full-stack SaaS platform with user management, role-based access, real-time analytics dashboard, and automated billing for B2B clients.</p>
+            <div class="pf-tech">
+              <span>React</span><span>Express</span><span>PostgreSQL</span><span>AWS</span>
+            </div>
+            <div class="pf-results">
+              <div class="result-item"><span class="result-value">500+</span><span class="result-label">Active Users</span></div>
+              <div class="result-item"><span class="result-value">99.9%</span><span class="result-label">Uptime</span></div>
+            </div>
+            <a href="#" class="pf-link">View Case Study →</a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="pf-card pf-card-lg">
+          <div class="pf-thumb">
+            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&h=600&fit=crop" alt="Aurelle Skin" loading="lazy">
+            <div class="pf-overlay">
+              <div class="pf-preview">
+                <div class="pf-preview-content">
+                  <div class="pf-preview-header">Aurelle Skin Store</div>
+                  <div class="pf-preview-stats">
+                    <span class="stat">+240% Conv</span>
+                    <span class="stat">45% Repeat</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pf-body">
+            <div class="pf-header">
+              <h3>Aurelle Skin</h3>
+              <span class="pf-year">2024</span>
+            </div>
+            <p>Custom Shopify theme with integrated subscription model, loyalty program, and optimized mobile checkout. 240% increase in mobile sales.</p>
+            <div class="pf-tech">
+              <span>Shopify</span><span>Liquid</span><span>JavaScript</span><span>Recharge</span>
+            </div>
+            <div class="pf-results">
+              <div class="result-item"><span class="result-value">+240%</span><span class="result-label">Conversions</span></div>
+              <div class="result-item"><span class="result-value">45%</span><span class="result-label">Repeat Buyers</span></div>
+            </div>
+            <a href="#" class="pf-link">View Case Study →</a>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="pf-card pf-card-lg">
+          <div class="pf-thumb">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop" alt="Meridian Homes" loading="lazy">
+            <div class="pf-overlay">
+              <div class="pf-preview">
+                <div class="pf-preview-content">
+                  <div class="pf-preview-header">Meridian Homes</div>
+                  <div class="pf-preview-stats">
+                    <span class="stat">Map Search</span>
+                    <span class="stat">Auto Leads</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pf-body">
+            <div class="pf-header">
+              <h3>Meridian Homes</h3>
+              <span class="pf-year">2024</span>
+            </div>
+            <p>High-end real estate listings website with interactive map search, property filtering, and automated lead routing to agents.</p>
+            <div class="pf-tech">
+              <span>Next.js</span><span>Mapbox</span><span>Supabase</span><span>Vercel</span>
+            </div>
+            <div class="pf-results">
+              <div class="result-item"><span class="result-value">3x</span><span class="result-label">More Leads</span></div>
+              <div class="result-item"><span class="result-value">1.8s</span><span class="result-label">Load Time</span></div>
+            </div>
+            <a href="#" class="pf-link">View Case Study →</a>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="pf-card pf-card-lg">
+          <div class="pf-thumb">
+            <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&h=600&fit=crop" alt="ScrubyHub" loading="lazy">
+            <div class="pf-overlay">
+              <div class="pf-preview">
+                <div class="pf-preview-content">
+                  <div class="pf-preview-header">ScrubyHub Store</div>
+                  <div class="pf-preview-stats">
+                    <span class="stat">Quiz Funnel</span>
+                    <span class="stat">Klaviyo</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pf-body">
+            <div class="pf-header">
+              <h3>ScrubyHub</h3>
+              <span class="pf-year">2024</span>
+            </div>
+            <p>D2C skincare brand website with custom product bundling, quiz-based product recommendations, and seamless Klaviyo email integration.</p>
+            <div class="pf-tech">
+              <span>Shopify</span><span>React</span><span>Klaviyo</span><span>Stripe</span>
+            </div>
+            <div class="pf-results">
+              <div class="result-item"><span class="result-value">+156%</span><span class="result-label">AOV</span></div>
+              <div class="result-item"><span class="result-value">32%</span><span class="result-label">Quiz Completion</span></div>
+            </div>
+            <a href="#" class="pf-link">View Case Study →</a>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="pf-card pf-card-lg">
+          <div class="pf-thumb">
+            <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=600&fit=crop" alt="Lumea Studio" loading="lazy">
+            <div class="pf-overlay">
+              <div class="pf-preview">
+                <div class="pf-preview-content">
+                  <div class="pf-preview-header">Lumea Studio</div>
+                  <div class="pf-preview-stats">
+                    <span class="stat">WebGL</span>
+                    <span class="stat">Custom CMS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pf-body">
+            <div class="pf-header">
+              <h3>Lumea Studio</h3>
+              <span class="pf-year">2023</span>
+            </div>
+            <p>Award-winning portfolio website for a digital design agency. Features WebGL animations, smooth page transitions, and a custom CMS.</p>
+            <div class="pf-tech">
+              <span>Next.js</span><span>Three.js</span><span>Framer Motion</span><span>Sanity</span>
+            </div>
+            <div class="pf-results">
+              <div class="result-item"><span class="result-value">Award</span><span class="result-label">Winner 2024</span></div>
+              <div class="result-item"><span class="result-value">100%</span><span class="result-label">Lighthouse</span></div>
+            </div>
+            <a href="#" class="pf-link">View Case Study →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section" style="background:var(--surface);">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Want your project featured here?</h2>
+        <p>Let's build something exceptional together. Tell us about your idea.</p>
+        <a href="contact.html" class="btn btn-primary btn-lg">Start your project</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <a href="index.html" class="logo" style="margin-bottom:16px;display:inline-flex;">
+            <img src="logo.png" alt="Ello" class="logo-img" style="width: 32px; height: 32px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="logo-mark" style="display:none;">e</span>
+            <span>Ello</span>
+          </a>
+          <p class="foot-desc">We build for businesses that are serious about growth.</p>
+          <div class="social-links">
+            <a href="https://wa.me/19144551903" target="_blank" aria-label="WhatsApp">💬</a>
+            <a href="https://instagram.com/ello.soft" target="_blank" aria-label="Instagram"></a>
+          </div>
+        </div>
+        <div>
+          <h4>Quick links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html">Website Development</a></li>
+            <li><a href="services.html">E-commerce & Shopify</a></li>
+            <li><a href="services.html">Custom SaaS Platforms</a></li>
+            <li><a href="services.html">WordPress Development</a></li>
+            <li><a href="services.html">AI & WhatsApp Automation</a></li>
+            <li><a href="services.html">SEO & Growth</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact Info</h4>
+          <ul>
+            <li>📍 Lahore, Pakistan</li>
+            <li>📞 <a href="tel:+19144551903">+1 (914) 455-1903</a></li>
+            <li>✉️ <a href="mailto:ello.services.org@gmail.com">ello.services.org@gmail.com</a></li>
+            <li>💬 <a href="https://wa.me/19144551903" target="_blank">WhatsApp Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Ello. All rights reserved.</span>
+        <div class="legal">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms</a>
+          <a href="refund.html">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a id="waFloat" href="https://wa.me/19144551903" class="wa-float" aria-label="Chat on WhatsApp" target="_blank" rel="noopener">💬</a>
+  <script src="script.js"></script>
+</body>
+</html>

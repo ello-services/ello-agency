@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>UI/UX Design | Ello - Conversion-Focused Interfaces</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@0..144,400;0..144,600;0..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+</head>
+<body>
+
+  <header>
+    <div class="nav-shell">
+      <nav class="nav">
+        <a href="../index.html" class="logo">
+          <img src="../logo.png" alt="Ello" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="logo-mark" style="display:none;">e</span>
+          <span>Ello</span>
+        </a>
+        <div class="links">
+          <a href="../index.html">Home</a>
+          <a href="../about.html">About</a>
+          <a href="../services.html" class="active">Services</a>
+          <a href="../projects.html">Projects</a>
+          <a href="../pricing.html">Pricing</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <button id="themeToggle" class="theme-btn" aria-label="Toggle theme"></button>
+          <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">☰</button>
+        </div>
+      </nav>
+      <div id="mobileMenu" class="mobile-menu">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../services.html">Services</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="blob-bg">
+      <div class="blob blob-a"></div>
+      <div class="blob blob-b"></div>
+    </div>
+    <div class="wrap">
+      <div class="page-hero-content">
+        <div class="eyebrow">Service 04 · UI/UX Design</div>
+        <h1 class="grad-text">Designs that convert,<br>not just look pretty.</h1>
+        <p class="lead">Great design isn't just about aesthetics — it's about solving problems. We design interfaces that guide users toward action, reduce friction, and make your product feel intuitive from the first click. From user research to pixel-perfect Figma files, we handle the entire design process.</p>
+        <div class="hero-ctas" style="justify-content: flex-start; margin-top: 32px;">
+          <a href="../contact.html" class="btn btn-primary">Get a Quote</a>
+          <a href="../projects.html" class="btn btn-ghost">See Our Work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="numbers-section">
+    <div class="wrap">
+      <div class="numbers-grid">
+        <div class="number-card"><div class="number">1-2</div><div class="number-label">Weeks to deliver</div></div>
+        <div class="number-card"><div class="number">Figma</div><div class="number-label">Native design</div></div>
+        <div class="number-card"><div class="number">100%</div><div class="number-label">Developer-ready</div></div>
+        <div class="number-card"><div class="number">UX</div><div class="number-label">Research-led</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">What's included</div>
+        <h2>Complete design process</h2>
+        <p>Whether you need a full product design or a redesign of an existing interface, we deliver designs that developers can build from with zero ambiguity.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>User Research</h3>
+          <p>We study your users, competitors, and market to inform every design decision.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✏️</div>
+          <h3>Wireframing</h3>
+          <p>Low-fidelity wireframes to map out structure and user flows before visual design.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>UI Design</h3>
+          <p>High-fidelity, pixel-perfect designs in Figma with your brand colors and typography.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🖱️</div>
+          <h3>Interactive Prototypes</h3>
+          <p>Clickable prototypes so you can test the experience before development starts.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"></div>
+          <h3>Design Systems</h3>
+          <p>Reusable components, tokens, and guidelines so your product stays consistent.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"></div>
+          <h3>Responsive Design</h3>
+          <p>Designs for mobile, tablet, and desktop — all in one Figma file.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section" style="background: var(--surface);">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Our process</div>
+        <h2>How we design your product</h2>
+      </div>
+      <div class="process-list">
+        <div class="process-item">
+          <div class="process-num">01</div>
+          <div><h3>Discovery & Research</h3><p>We learn about your users, goals, and competitors to inform the design direction.</p></div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">02</div>
+          <div><h3>Wireframes & Flows</h3><p>We map out the structure and user journeys in low-fidelity wireframes.</p></div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">03</div>
+          <div><h3>Visual Design</h3><p>We create high-fidelity designs in Figma with your brand identity applied.</p></div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">04</div>
+          <div><h3>Prototype & Handoff</h3><p>We build an interactive prototype and prepare developer-ready files with specs.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Pricing</div>
+        <h2>Transparent pricing</h2>
+      </div>
+      <div class="pricing-highlight">
+        <div class="price-tag">From PKR 8,000</div>
+        <div class="price-timeline">1-2 weeks delivery</div>
+        <p style="color: var(--muted); margin-top: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">Pricing depends on the number of screens and complexity. We'll give you a fixed quote after understanding your project scope.</p>
+        <a href="../contact.html" class="btn btn-primary" style="margin-top: 30px;">Get Your Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section" style="background: var(--surface);">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">FAQs</div>
+        <h2>Common questions</h2>
+      </div>
+      <div id="faqList" style="max-width: 700px;">
+        <div class="faq-item"><button class="faq-q">What deliverables do I get?<span class="plus">+</span></button><div class="faq-a"><p>You get a complete Figma file with all screens, components, prototypes, and a design system.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Can you work with our existing brand?<span class="plus">+</span></button><div class="faq-a"><p>Yes. We work with your brand guidelines or help you develop them from scratch.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Do you also develop the designs?<span class="plus">+</span></button><div class="faq-a"><p>Yes. We can design and develop, or just design — your choice.</p></div></div>
+        <div class="faq-item"><button class="faq-q">How many revision rounds are included?<span class="plus">+</span></button><div class="faq-a"><p>Two rounds of revisions are included. Additional rounds can be added if needed.</p></div></div>
+        <div class="faq-item"><button class="faq-q">What if I need changes after handoff?<span class="plus">+</span></button><div class="faq-a"><p>We offer ongoing design support on a monthly retainer basis.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Need a design that converts?</h2>
+        <p>Tell us about your product. We'll design an interface your users will love.</p>
+        <a href="../contact.html" class="btn btn-primary btn-lg">Start Your Project</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <a href="../index.html" class="logo" style="margin-bottom:16px;display:inline-flex;">
+            <img src="../logo.png" alt="Ello" class="logo-img" style="width: 32px; height: 32px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span class="logo-mark" style="display:none;">e</span>
+            <span>Ello</span>
+          </a>
+          <p class="foot-desc">Elite software agency building premium digital experiences for growing businesses.</p>
+          <div class="social-links">
+            <a href="https://wa.me/19144551903" target="_blank" aria-label="WhatsApp">💬</a>
+            <a href="https://instagram.com/ello.soft" target="_blank" aria-label="Instagram">📷</a>
+
+          </div>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+            <li><a href="../services.html">Services</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li><a href="web-design.html">Web Design</a></li>
+            <li><a href="ecommerce.html">E-commerce</a></li>
+            <li><a href="custom-saas.html">SaaS Platforms</a></li>
+            <li><a href="maintenance.html">Maintenance</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact Info</h4>
+          <ul>
+            <li>📍 Lahore, Pakistan</li>
+            <li>📞 <a href="tel:+19144551903">+1 (914) 455-1903</a></li>
+            <li>✉️ <a href="mailto:ello.services.org@gmail.com">ello.services.org@gmail.com</a></li>
+            <li> <a href="https://wa.me/19144551903" target="_blank">WhatsApp Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Ello Agency. All rights reserved.</span>
+        <div class="legal">
+          <a href="../privacy.html">Privacy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="../refund.html">Refund</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a id="waFloat" href="https://wa.me/19144551903" class="wa-float" aria-label="Chat on WhatsApp" target="_blank" rel="noopener">💬</a>
+  <script src="../script.js"></script>
+</body>
+</html>
